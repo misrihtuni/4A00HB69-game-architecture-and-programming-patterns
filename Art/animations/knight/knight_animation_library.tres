@@ -1,0 +1,22 @@
+[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://bm0pga1jx6dkl"]
+
+[ext_resource type="Animation" uid="uid://biv6pfwyo52bq" path="res://Art/animations/knight/fire.res" id="1_cul55"]
+[ext_resource type="Animation" uid="uid://lgk8122px0np" path="res://Art/animations/knight/idle.res" id="2_6n0ol"]
+[ext_resource type="Animation" uid="uid://b3ex83jese0fo" path="res://Art/animations/knight/in_air.res" id="3_r774f"]
+[ext_resource type="Animation" uid="uid://dk8if7vn00cu2" path="res://Art/animations/knight/jump.res" id="4_bx7rk"]
+[ext_resource type="Animation" uid="uid://c7hnjyddrmdy2" path="res://Art/animations/knight/land.res" id="5_gwd7p"]
+[ext_resource type="Animation" uid="uid://bpsjynlkypes4" path="res://Art/animations/knight/run.res" id="6_dno20"]
+[ext_resource type="Animation" uid="uid://cq7ahijc53dh3" path="res://Art/animations/knight/swing_01.res" id="7_3fa8q"]
+[ext_resource type="Animation" uid="uid://dn2m625l5gcwo" path="res://Art/animations/knight/t-pose.res" id="8_rafe5"]
+
+[resource]
+_data = {
+&"fire": ExtResource("1_cul55"),
+&"idle": ExtResource("2_6n0ol"),
+&"in_air": ExtResource("3_r774f"),
+&"jump": ExtResource("4_bx7rk"),
+&"land": ExtResource("5_gwd7p"),
+&"run": ExtResource("6_dno20"),
+&"swing_01": ExtResource("7_3fa8q"),
+&"t-pose": ExtResource("8_rafe5")
+}

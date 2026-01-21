@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bhbv586fikjbu"]
+
+[ext_resource type="Texture2D" uid="uid://ba5p73q2uqs6a" path="res://Art/Textures/Skeleton_Skeleton_tex_skeleton.png" id="1_7rkp2"]
+
+[resource]
+resource_name = "mat_skeleton"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_7rkp2")
+texture_filter = 2
