@@ -2,46 +2,47 @@ using Godot;
 
 namespace GA.Platformer3D
 {
-	public abstract partial class Character : CharacterBody3D
-	{
-		[Export] private float _speed = 5.0f;
-		[Export] private float _jumpVelocity = 4.5f;
-		[Export] private Node3D _rig = null;
-		[Export] private float _rotationSpeed = 15f;
+    public abstract partial class Character : CharacterBody3D
+    {
+        [Export]
+        private float _speed = 5.0f;
 
-		/// <summary>
-		/// A reference to the character rig.
-		/// </summary>
-		public Node3D CharacterRig => _rig;
+        [Export]
+        private float _jumpVelocity = 4.5f;
 
-		public float CurrentSpeed
-		{
-			get
-			{
-				return Velocity.Length();
-			}
-		}
+        [Export]
+        private Node3D _rig = null;
 
-		public float RotationSpeed => _rotationSpeed;
+        [Export]
+        private float _rotationSpeed = 15f;
 
-		public float MaxSpeed
-		{
-			get { return _speed; }
-			protected set
-			{
-				// TODO: Validate the value before setting it. Notify about the change is nesessary.
-				_speed = value;
-			}
-		}
+        /// <summary>
+        /// A reference to the character rig.
+        /// </summary>
+        public Node3D CharacterRig => _rig;
 
-		public float JumpVelocity
-		{
-			get { return _jumpVelocity; }
-			protected set
-			{
-				// TODO: Validate the value before setting it. Notify about the change is nesessary.
-				_jumpVelocity = value;
-			}
-		}
-	}
+        public float CurrentSpeed => Velocity.Length();
+
+        public float RotationSpeed => _rotationSpeed;
+
+        public float MaxSpeed
+        {
+            get => _speed;
+            protected set
+            {
+                // TODO: Validate the value before setting it. Notify about the change is nesessary.
+                _speed = value;
+            }
+        }
+
+        public float JumpVelocity
+        {
+            get => _jumpVelocity;
+            protected set
+            {
+                // TODO: Validate the value before setting it. Notify about the change is nesessary.
+                _jumpVelocity = value;
+            }
+        }
+    }
 }
