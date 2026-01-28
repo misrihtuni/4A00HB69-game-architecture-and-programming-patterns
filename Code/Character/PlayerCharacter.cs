@@ -14,18 +14,28 @@ namespace GA.Platformer3D
         /// <param name="delta">The time passed since the previous frame.</param>
         public override void _PhysicsProcess(double delta)
         {
+            // Cached values.
+            Vector3 gravity = GetGravity();
+            bool isOnFloor = IsOnFloor();
+
             Vector3 velocity = Velocity;
 
             // Add the gravity.
-            if (!IsOnFloor())
+            if (!isOnFloor)
             {
-                velocity += GetGravity() * (float)delta;
+                velocity += gravity * (float)delta;
             }
 
             // Handle Jump.
-            if (Input.IsActionJustPressed("jump") && IsOnFloor())
+            if (Input.IsActionJustPressed("jump") && isOnFloor)
             {
                 velocity.Y = JumpVelocity;
+                IsJumping = true;
+            }
+            else if (IsJumping && isOnFloor)
+            {
+                // Character landed.
+                IsJumping = false;
             }
 
             // Get the input direction and handle the movement/deceleration.
