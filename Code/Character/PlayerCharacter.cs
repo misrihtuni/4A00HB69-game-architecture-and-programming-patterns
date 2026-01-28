@@ -27,7 +27,7 @@ namespace GA.Platformer3D
             }
 
             // Handle Jump.
-            if (Input.IsActionJustPressed("jump") && isOnFloor)
+            if (Input.IsActionJustPressed(Config.Input.JUMP_NAME) && isOnFloor)
             {
                 velocity.Y = JumpVelocity;
                 IsJumping = true;
@@ -40,7 +40,12 @@ namespace GA.Platformer3D
 
             // Get the input direction and handle the movement/deceleration.
             // As good practice, you should replace UI actions with custom gameplay actions.
-            Vector2 inputDir = Input.GetVector("left", "right", "up", "down");
+            Vector2 inputDir = Input.GetVector(
+                Config.Input.MOVE_LEFT_NAME,
+                Config.Input.MOVE_RIGHT_NAME,
+                Config.Input.MOVE_UP_NAME,
+                Config.Input.MOVE_DOWN_NAME
+            );
             Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
             if (direction != Vector3.Zero)
             {
