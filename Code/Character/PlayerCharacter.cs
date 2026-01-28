@@ -8,6 +8,22 @@ namespace GA.Platformer3D
         // TODO: Refactor this. Move common code (between PlayerCharacter and EnemyCharacter) to the
         // base class.
 
+        public override void _Process(double delta)
+        {
+            bool isOnFloor = IsOnFloor();
+
+            if (isOnFloor && Input.IsActionJustPressed(Config.Input.STRIKE_NAME))
+            {
+                IsStriking = true;
+            }
+            else if (IsStriking && Input.IsActionJustReleased(Config.Input.STRIKE_NAME))
+            {
+                IsStriking = false;
+            }
+
+            GD.Print(IsStriking);
+        }
+
         /// <summary>
         /// Physics calculations are performed in this method.
         /// </summary>
@@ -27,7 +43,7 @@ namespace GA.Platformer3D
             }
 
             // Handle Jump.
-            if (Input.IsActionJustPressed(Config.Input.JUMP_NAME) && isOnFloor)
+            if (Input.IsActionJustPressed(Config.Input.JUMP_NAME) && isOnFloor && !IsStriking)
             {
                 velocity.Y = JumpVelocity;
                 IsJumping = true;
