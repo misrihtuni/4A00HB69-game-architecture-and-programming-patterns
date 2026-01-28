@@ -8,6 +8,22 @@ namespace GA.Platformer3D
         // TODO: Refactor this. Move common code (between PlayerCharacter and EnemyCharacter) to the
         // base class.
 
+        public override void _Process(double delta)
+        {
+            bool isOnFloor = IsOnFloor();
+
+            if (isOnFloor && Input.IsActionJustPressed(Config.Input.STRIKE_NAME))
+            {
+                IsStriking = true;
+            }
+            else if (IsStriking && Input.IsActionJustReleased(Config.Input.STRIKE_NAME))
+            {
+                IsStriking = false;
+            }
+
+            GD.Print(IsStriking);
+        }
+
         /// <summary>
         /// Physics calculations are performed in this method.
         /// </summary>
@@ -27,7 +43,7 @@ namespace GA.Platformer3D
             }
 
             // Handle Jump.
-            if (Input.IsActionJustPressed("jump") && isOnFloor)
+            if (Input.IsActionJustPressed(Config.Input.JUMP_NAME) && isOnFloor && !IsStriking)
             {
                 velocity.Y = JumpVelocity;
                 IsJumping = true;
@@ -40,7 +56,12 @@ namespace GA.Platformer3D
 
             // Get the input direction and handle the movement/deceleration.
             // As good practice, you should replace UI actions with custom gameplay actions.
-            Vector2 inputDir = Input.GetVector("left", "right", "up", "down");
+            Vector2 inputDir = Input.GetVector(
+                Config.Input.MOVE_LEFT_NAME,
+                Config.Input.MOVE_RIGHT_NAME,
+                Config.Input.MOVE_UP_NAME,
+                Config.Input.MOVE_DOWN_NAME
+            );
             Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
             if (direction != Vector3.Zero)
             {

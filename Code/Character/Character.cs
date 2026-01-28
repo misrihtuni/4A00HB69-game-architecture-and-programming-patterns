@@ -22,6 +22,16 @@ namespace GA.Platformer3D
         public bool IsJumping { get; protected set; } = false;
 
         /// <summary>
+        /// Is the character currently striking with a sword.
+        /// </summary>
+        public bool IsStriking { get; protected set; } = false;
+
+        /// <summary>
+        /// Is the character currently shooting with a gun.
+        /// </summary>
+        public bool IsShooting { get; protected set; } = false;
+
+        /// <summary>
         /// A reference to the character rig.
         /// </summary>
         public Node3D CharacterRig => _rig;

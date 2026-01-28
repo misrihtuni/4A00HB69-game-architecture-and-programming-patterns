@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dhge6x15yiuxr"]
+[gd_scene load_steps=31 format=4 uid="uid://dhge6x15yiuxr"]
 
 [ext_resource type="Material" uid="uid://cxkskf0a4uvqe" path="res://Art/materials/knight.tres" id="1_7j8xp"]
 [ext_resource type="Script" uid="uid://c1b37g6jnuec" path="res://Code/Character/PlayerCharacter.cs" id="1_offgb"]
@@ -216,6 +216,9 @@ animation = &"knight_animation_library/jump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbc0s"]
 animation = &"knight_animation_library/run"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vh0fs"]
+animation = &"knight_animation_library/swing_01"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_offgb"]
 advance_mode = 2
 
@@ -259,6 +262,24 @@ xfade_curve = ExtResource("4_wbc0s")
 advance_mode = 2
 advance_expression = "IsJumping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q8hlr"]
+advance_mode = 2
+advance_expression = "IsStriking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qg0cu"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!IsStriking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1ffd"]
+advance_mode = 2
+advance_expression = "IsStriking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmjno"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentSpeed > 0.1"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wbc0s"]
 states/End/position = Vector2(680, 29)
 states/Start/position = Vector2(143, 29)
@@ -272,8 +293,10 @@ states/jump_start/node = SubResource("AnimationNodeAnimation_v1ffd")
 states/jump_start/position = Vector2(476, 29)
 states/run/node = SubResource("AnimationNodeAnimation_wbc0s")
 states/run/position = Vector2(302.3333, 148)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_offgb"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_wbc0s"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_7stuo"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_vh0fs"), "jump_start", "jump_in_air", SubResource("AnimationNodeStateMachineTransition_8chs8"), "jump_in_air", "jump_land", SubResource("AnimationNodeStateMachineTransition_31ney"), "jump_land", "idle", SubResource("AnimationNodeStateMachineTransition_tvdwm"), "run", "jump_start", SubResource("AnimationNodeStateMachineTransition_e8lxy")]
-graph_offset = Vector2(-60, -110)
+states/strike/node = SubResource("AnimationNodeAnimation_vh0fs")
+states/strike/position = Vector2(143, 148)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_offgb"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_wbc0s"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_7stuo"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_vh0fs"), "jump_start", "jump_in_air", SubResource("AnimationNodeStateMachineTransition_8chs8"), "jump_in_air", "jump_land", SubResource("AnimationNodeStateMachineTransition_31ney"), "jump_land", "idle", SubResource("AnimationNodeStateMachineTransition_tvdwm"), "run", "jump_start", SubResource("AnimationNodeStateMachineTransition_e8lxy"), "idle", "strike", SubResource("AnimationNodeStateMachineTransition_q8hlr"), "strike", "idle", SubResource("AnimationNodeStateMachineTransition_qg0cu"), "run", "strike", SubResource("AnimationNodeStateMachineTransition_v1ffd"), "strike", "run", SubResource("AnimationNodeStateMachineTransition_dmjno")]
+graph_offset = Vector2(-142, -38)
 
 [node name="Knight" type="CharacterBody3D" node_paths=PackedStringArray("_rig")]
 script = ExtResource("1_offgb")
@@ -286,7 +309,7 @@ bones/0/name = "spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1, 3.8220744e-08, 1.8567646e-07, 2.005054e-08, 0.99529487, -0.096891, -1.885061e-07, -0.09689099, -0.995295, -8.334968e-09, 1.012671, 0.093995005)
 bones/0/enabled = true
-bones/0/position = Vector3(-8.557629e-09, 1.0015659, 0.09399498)
+bones/0/position = Vector3(-8.548304e-09, 1.002031, 0.09399499)
 bones/0/rotation = Quaternion(0.009061024, 0.998782, -0.048500583, -0.00043990713)
 bones/0/scale = Vector3(1, 0.9999998, 0.99999994)
 bones/1/name = "spine.001"
@@ -294,35 +317,35 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 2.4510427e-08, 1.720741e-08, -2.4050834e-08, 0.9996562, -0.026219416, -1.7844146e-08, 0.026219416, 0.9996562, 5.7731597e-15, 0.15012385, -4.9960036e-16)
 bones/1/enabled = true
 bones/1/position = Vector3(5.7731597e-15, 0.15012385, -4.9960036e-16)
-bones/1/rotation = Quaternion(-0.041130535, -0.0006491165, -0.009915123, 0.99910444)
+bones/1/rotation = Quaternion(-0.059746098, -0.0004961641, -0.009920192, 0.9981642)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "spine.002"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -2.7112732e-09, 2.2224807e-08, -7.541682e-10, 0.9879986, 0.15446265, -2.237687e-08, -0.15446264, 0.9879986, -6.661338e-16, 0.1366367, 1.4901161e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.661338e-16, 0.1366367, 1.4901161e-08)
-bones/2/rotation = Quaternion(-0.059435613, 0.00040492744, 0.013500557, 0.9981408)
+bones/2/rotation = Quaternion(-0.062504396, 0.00044110103, 0.013499588, 0.99795336)
 bones/2/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/3/name = "spine.003"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, -9.69306e-09, -8.2839297e-10, 9.7259845e-09, 0.99801636, 0.06295541, 2.1651919e-10, -0.06295541, 0.99801636, -1.2767565e-15, 0.1728875, -5.5879354e-09)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.2767565e-15, 0.1728875, -5.5879354e-09)
-bones/3/rotation = Quaternion(-0.029616948, 8.201916e-05, -0.0019847383, 0.99955934)
+bones/3/rotation = Quaternion(-0.03139787, 0.00012344225, -0.001982126, 0.999505)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "spine.004"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, -3.2410842e-08, -5.9173562e-08, 1.9470951e-08, 0.9783764, -0.20683296, 6.4597636e-08, 0.20683299, 0.97837627, 1.3322676e-15, 0.19336858, 7.45058e-09)
 bones/4/enabled = true
 bones/4/position = Vector3(1.3322676e-15, 0.19336858, 7.45058e-09)
-bones/4/rotation = Quaternion(0.14792983, -0.0009437469, 8.832441e-06, 0.98899746)
+bones/4/rotation = Quaternion(0.14817488, -0.0009490211, 8.88098e-06, 0.9889608)
 bones/4/scale = Vector3(1, 1.0000001, 1)
 bones/5/name = "head"
 bones/5/parent = 4
 bones/5/rest = Transform3D(1, 4.6343352e-08, 4.748418e-08, -4.7582397e-08, 0.99965054, 0.026434917, -4.6242505e-08, -0.026434917, 0.99965054, 5.107026e-15, 0.06301926, -1.4901161e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(5.107026e-15, 0.06301926, -1.4901161e-08)
-bones/5/rotation = Quaternion(0.002950918, -0.0003427735, 3.4473698e-05, 0.9999956)
+bones/5/rotation = Quaternion(0.0035145367, -0.00035472118, 3.567635e-05, 0.9999938)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "shoulder.R"
 bones/6/parent = 3
@@ -469,21 +492,21 @@ bones/26/parent = 0
 bones/26/rest = Transform3D(0.9999719, -0.007483039, 0.00028931478, -0.007355616, -0.98872644, -0.14955163, 0.0014051636, 0.14954637, -0.9887468, 0.1345781, 0.07770765, 0.038333103)
 bones/26/enabled = true
 bones/26/position = Vector3(0.13457811, 0.077707425, 0.03833313)
-bones/26/rotation = Quaternion(0.99790436, 0.062120084, 0.0032431728, 0.017819766)
+bones/26/rotation = Quaternion(0.99792737, 0.063080035, 0.003860903, 0.012130722)
 bones/26/scale = Vector3(0.99999994, 1, 0.999993)
 bones/27/name = "shin.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(0.9997508, 0.02201645, -0.0036979946, -0.022234214, 0.9670253, -0.2537082, -0.0020097, 0.25372726, 0.96727365, 7.566996e-09, 0.40882713, 3.1541276e-09)
 bones/27/enabled = true
 bones/27/position = Vector3(7.566996e-09, 0.40882713, 3.1541276e-09)
-bones/27/rotation = Quaternion(0.0797509, -0.005258152, 0.023819344, 0.99651635)
+bones/27/rotation = Quaternion(0.06960748, -0.006417572, 0.02545912, 0.9972289)
 bones/27/scale = Vector3(1, 1, 0.99999994)
 bones/28/name = "foot.L"
 bones/28/parent = 27
 bones/28/rest = Transform3D(0.99664503, 0.08093862, -0.012149528, -0.0337617, 0.5417934, 0.83983326, 0.07455748, -0.8366056, 0.5427083, 4.8603397e-09, 0.48357674, 3.2014214e-10)
 bones/28/enabled = true
 bones/28/position = Vector3(4.8603397e-09, 0.48357674, 3.2014214e-10)
-bones/28/rotation = Quaternion(-0.47897542, -0.035174042, -0.00041198434, 0.87712336)
+bones/28/rotation = Quaternion(-0.47441757, -0.034787115, -0.0007523468, 0.879612)
 bones/28/scale = Vector3(1, 1, 0.9999999)
 bones/29/name = "toe.L"
 bones/29/parent = 28
@@ -497,28 +520,28 @@ bones/30/parent = 0
 bones/30/rest = Transform3D(0.9999719, 0.0074830386, -0.00028972697, 0.007355554, -0.98872644, -0.14955169, -0.0014055705, 0.14954633, -0.9887475, -0.1345781, 0.07770766, 0.038333155)
 bones/30/enabled = true
 bones/30/position = Vector3(-0.13457811, 0.0777076, 0.03833316)
-bones/30/rotation = Quaternion(0.9980073, -0.05504345, -0.009603142, 0.02931831)
+bones/30/rotation = Quaternion(0.9981024, -0.05545054, -0.010721488, 0.02453519)
 bones/30/scale = Vector3(0.99999994, 1, 0.9999937)
 bones/31/name = "shin.R"
 bones/31/parent = 30
 bones/31/rest = Transform3D(0.9997508, -0.022016464, 0.0036980056, 0.022234231, 0.9670252, -0.25370812, 0.0020096914, 0.25372714, 0.9672737, -9.194991e-09, 0.408827, 1.371518e-09)
 bones/31/enabled = true
 bones/31/position = Vector3(-9.194991e-09, 0.408827, 1.371518e-09)
-bones/31/rotation = Quaternion(0.12910351, 0.0001616273, -0.004207794, 0.9916222)
+bones/31/rotation = Quaternion(0.12035372, 0.0012110982, -0.0043258634, 0.99272096)
 bones/31/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/32/name = "foot.R"
 bones/32/parent = 31
 bones/32/rest = Transform3D(0.99664503, -0.08093863, 0.012149568, 0.03376171, 0.5417937, 0.8398331, -0.07455751, -0.83660525, 0.54270864, -4.5838533e-09, 0.4835768, 1.4944817e-08)
 bones/32/enabled = true
 bones/32/position = Vector3(-4.5838533e-09, 0.4835768, 1.4944817e-08)
-bones/32/rotation = Quaternion(-0.5124519, 0.038724504, 4.2831536e-05, 0.8578423)
+bones/32/rotation = Quaternion(-0.50907177, 0.03844092, 0.0003643229, 0.8598652)
 bones/32/scale = Vector3(1, 0.9999999, 0.99999994)
 bones/33/name = "toe.R"
 bones/33/parent = 32
 bones/33/rest = Transform3D(-0.99686444, -0.053147867, -0.05862501, -0.002543606, 0.7620069, -0.6475637, 0.07908932, -0.64538383, -0.7597528, -1.0826625e-08, 0.21749483, -4.656613e-10)
 bones/33/enabled = true
 bones/33/position = Vector3(-1.0826625e-08, 0.21749483, -4.656613e-10)
-bones/33/rotation = Quaternion(-0.014718418, 0.9434947, -0.32922068, -0.034855723)
+bones/33/rotation = Quaternion(-0.014771938, 0.9443719, -0.32672012, -0.034605134)
 bones/33/scale = Vector3(1.0000001, 0.99999976, 0.99999994)
 
 [node name="Mesh" type="MeshInstance3D" parent="KnightRig/Skeleton3D"]
@@ -526,7 +549,7 @@ mesh = SubResource("ArrayMesh_42kvx")
 skin = SubResource("Skin_nr0ph")
 
 [node name="SwordAttachment" type="BoneAttachment3D" parent="KnightRig/Skeleton3D"]
-transform = Transform3D(0.45637542, -0.8104104, -0.36736476, -0.75349927, -0.57158464, 0.32485294, -0.47324467, 0.12855422, -0.8715006, 0.5386212, 0.89862484, -0.056546837)
+transform = Transform3D(0.45637545, -0.8104103, -0.36736476, -0.73043585, -0.5769926, 0.36543474, -0.5081192, 0.101560876, -0.8552779, 0.5386212, 0.9058854, -0.07018647)
 bone_name = "item.R"
 bone_idx = 14
 
@@ -536,7 +559,7 @@ mesh = SubResource("ArrayMesh_rxu62")
 skeleton = NodePath("")
 
 [node name="PistolAttachment" type="BoneAttachment3D" parent="KnightRig/Skeleton3D"]
-transform = Transform3D(-0.045849673, -0.99541694, -0.08392489, -0.87384623, 0.08067434, -0.4794625, 0.48403546, 0.05135399, -0.87354016, -0.5141062, 0.90987706, -0.035239086)
+transform = Transform3D(-0.045849726, -0.9954169, -0.08392498, -0.89562, 0.07817281, -0.4378969, 0.4424504, 0.055087253, -0.8950994, -0.5141062, 0.91612417, -0.04837373)
 bone_name = "item.L"
 bone_idx = 23
 
