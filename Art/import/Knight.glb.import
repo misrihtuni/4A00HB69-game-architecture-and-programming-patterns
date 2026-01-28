@@ -16491,7 +16491,7 @@ _subresources={
 "materials": {
 "knight": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://materials/knight.tres",
+"use_external/fallback_path": "res://Art/materials/knight.tres",
 "use_external/path": "uid://cxkskf0a4uvqe"
 }
 },
@@ -16502,7 +16502,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://meshes/knight/Knight_Mesh.res",
+"save_to_file/fallback_path": "res://Art/meshes/knight/Knight_Mesh.res",
 "save_to_file/path": "uid://dj183xnrppt05"
 },
 "Knight_pistol": {
@@ -16511,7 +16511,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://meshes/knight/Knight_pistol.res",
+"save_to_file/fallback_path": "res://Art/meshes/knight/Knight_pistol.res",
 "save_to_file/path": "uid://dmsh7h3ad81iv"
 },
 "Knight_sword_knight": {
@@ -16520,7 +16520,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://meshes/knight/Knight_sword_knight.res",
+"save_to_file/fallback_path": "res://Art/meshes/knight/Knight_sword_knight.res",
 "save_to_file/path": "uid://ce06vrkpliccc"
 }
 }
