@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="Platformer3D"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://isifdpnnfqnj"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Platformer3D"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
