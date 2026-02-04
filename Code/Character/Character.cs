@@ -4,6 +4,10 @@ namespace GA.Platformer3D
 {
     public abstract partial class Character : CharacterBody3D
     {
+        ///////////////////////////////////////////////////////////////////////
+        // Exports
+        ///////////////////////////////////////////////////////////////////////
+
         [Export]
         private float _speed = 5.0f;
 
@@ -15,6 +19,15 @@ namespace GA.Platformer3D
 
         [Export]
         private float _rotationSpeed = 15f;
+
+        ///////////////////////////////////////////////////////////////////////
+        // Properties
+        ///////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// The character's health.
+        /// </summary>
+        public IHealth Health { get; private set; }
 
         /// <summary>
         /// Indicates if the character is currently jumping.
@@ -58,6 +71,16 @@ namespace GA.Platformer3D
                 // TODO: Validate the value before setting it. Notify about the change is nesessary.
                 _jumpVelocity = value;
             }
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        // Methods
+        ///////////////////////////////////////////////////////////////////////
+
+        public override void _Ready()
+        {
+            // TODO: Replace with an extension method that doesn't use the node path.
+            Health = GetNode<IHealth>("Health");
         }
     }
 }
