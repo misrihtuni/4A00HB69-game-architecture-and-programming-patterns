@@ -3,22 +3,27 @@ namespace GA.Platformer3D
     public interface IHealth
     {
         /// <summary>
-        /// TODO: Add documentation.
+        /// The current HP of the user.
         /// </summary>
         int CurrentHP { get; }
 
         /// <summary>
-        /// TODO: Add documentation.
+        /// The maximum HP of the user.
         /// </summary>
         int MaxHP { get; }
 
         /// <summary>
-        /// TODO: Add documentation.
+        /// The initial HP of the user.
+        /// </summary>
+        int InitialHP { get; }
+
+        /// <summary>
+        /// Tells whether the user is currently alive.
         /// </summary>
         bool IsAlive { get; }
 
         /// <summary>
-        /// TODO: Add documentation.
+        /// Tells if the
         /// </summary>
         bool IsImmortal { get; }
 
