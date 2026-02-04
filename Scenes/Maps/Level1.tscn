@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://isifdpnnfqnj"]
+[gd_scene load_steps=5 format=3 uid="uid://isifdpnnfqnj"]
 
 [ext_resource type="PackedScene" uid="uid://cmkm6kjpnwcqo" path="res://Scenes/Level/LargeGrassBlock.tscn" id="1_rmvbh"]
+[ext_resource type="Script" uid="uid://bpwpogv0hwddq" path="res://Code/Level/LevelManager.cs" id="1_ryb75"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/projectile.tscn" id="2_88msy"]
 [ext_resource type="PackedScene" uid="uid://dhge6x15yiuxr" path="res://Scenes/Characters/knight.tscn" id="3_kl0vg"]
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_ryb75")
+_projectileScene = ExtResource("2_88msy")
 
 [node name="Platforms" type="Node3D" parent="."]
 
