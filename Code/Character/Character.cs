@@ -18,6 +18,13 @@ namespace GA.Platformer3D
 			private set;
 		}
 
+		[Export]
+		public Node3D LaunchPoint
+		{
+			get;
+			private set;
+		}
+
 		/// <summary>
 		/// Indicates if the character is currently jumping.
 		/// </summary>
@@ -72,6 +79,12 @@ namespace GA.Platformer3D
 		{
 			// TODO: Replace with an extensions method which doensn't use the path.
 			Health = GetNode<IHealth>("Health");
+		}
+
+		private void OnShoot()
+		{
+			LevelManager.Active.SpawnProjectile(LaunchPoint.GlobalPosition,
+				-LaunchPoint.GlobalTransform.Basis.Z, CollisionLayer, CollisionMask);
 		}
 	}
 }

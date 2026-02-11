@@ -17,6 +17,15 @@ namespace GA.Platformer3D
 			{
 				IsStriking = false;
 			}
+
+			if (isOnFloor && Input.IsActionJustPressed(InputConfig.SHOOT_NAME))
+			{
+				IsShooting = true;
+			}
+			else if (IsShooting && Input.IsActionJustReleased(InputConfig.SHOOT_NAME))
+			{
+				IsShooting = false;
+			}
 		}
 
 		/// <summary>
