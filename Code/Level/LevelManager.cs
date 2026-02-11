@@ -10,20 +10,29 @@ namespace GA.Platformer3D
         ///////////////////////////////////////////////////////////////////////
 
         [Export]
-        private bool _useProjectilePool = false;
-
-        [Export]
         private PackedScene _projectileScene = null;
 
         // TODO: Is it even necessary to allow setting this from the editor?
         [Export]
         private Node3D _projectileParent = null;
 
+        [ExportCategory("Projectile Pool")]
+        [Export]
+        private bool _useProjectilePool = false;
+
+        [Export]
+        private int _projectilePoolCapacity = 10;
+
+        [Export]
+        private bool _projectilePoolCanGrow = false;
+
         ///////////////////////////////////////////////////////////////////////
         // Properties
         ///////////////////////////////////////////////////////////////////////
 
         public static LevelManager Active { get; private set; }
+
+        public Node3D ProjectileParent => _projectileParent;
 
         ///////////////////////////////////////////////////////////////////////
         // Public Methods
