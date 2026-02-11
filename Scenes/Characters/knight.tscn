@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dhge6x15yiuxr"]
+[gd_scene load_steps=36 format=4 uid="uid://dhge6x15yiuxr"]
 
 [ext_resource type="Material" uid="uid://cxkskf0a4uvqe" path="res://Art/materials/knight.tres" id="1_7j8xp"]
 [ext_resource type="Script" uid="uid://c1b37g6jnuec" path="res://Code/Character/PlayerCharacter.cs" id="1_offgb"]
@@ -217,6 +217,9 @@ animation = &"knight_animation_library/jump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbc0s"]
 animation = &"knight_animation_library/run"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8chs8"]
+animation = &"knight_animation_library/fire"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vh0fs"]
 animation = &"knight_animation_library/swing_01"
 
@@ -282,6 +285,20 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "CurrentSpeed > 0.1"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npltq"]
+advance_mode = 2
+advance_expression = "IsShooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5vgli"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentSpeed < 0.1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ylt54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentSpeed >= 0.1"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wbc0s"]
 states/End/position = Vector2(680, 29)
 states/Start/position = Vector2(143, 29)
@@ -295,14 +312,17 @@ states/jump_start/node = SubResource("AnimationNodeAnimation_v1ffd")
 states/jump_start/position = Vector2(476, 29)
 states/run/node = SubResource("AnimationNodeAnimation_wbc0s")
 states/run/position = Vector2(302.3333, 148)
+states/shoot/node = SubResource("AnimationNodeAnimation_8chs8")
+states/shoot/position = Vector2(476, 148)
 states/strike/node = SubResource("AnimationNodeAnimation_vh0fs")
 states/strike/position = Vector2(143, 148)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_offgb"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_wbc0s"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_7stuo"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_vh0fs"), "jump_start", "jump_in_air", SubResource("AnimationNodeStateMachineTransition_8chs8"), "jump_in_air", "jump_land", SubResource("AnimationNodeStateMachineTransition_31ney"), "jump_land", "idle", SubResource("AnimationNodeStateMachineTransition_tvdwm"), "run", "jump_start", SubResource("AnimationNodeStateMachineTransition_e8lxy"), "idle", "strike", SubResource("AnimationNodeStateMachineTransition_q8hlr"), "strike", "idle", SubResource("AnimationNodeStateMachineTransition_qg0cu"), "run", "strike", SubResource("AnimationNodeStateMachineTransition_v1ffd"), "strike", "run", SubResource("AnimationNodeStateMachineTransition_dmjno")]
-graph_offset = Vector2(-73, -202)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_offgb"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_wbc0s"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_7stuo"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_vh0fs"), "jump_start", "jump_in_air", SubResource("AnimationNodeStateMachineTransition_8chs8"), "jump_in_air", "jump_land", SubResource("AnimationNodeStateMachineTransition_31ney"), "jump_land", "idle", SubResource("AnimationNodeStateMachineTransition_tvdwm"), "run", "jump_start", SubResource("AnimationNodeStateMachineTransition_e8lxy"), "idle", "strike", SubResource("AnimationNodeStateMachineTransition_q8hlr"), "strike", "idle", SubResource("AnimationNodeStateMachineTransition_qg0cu"), "run", "strike", SubResource("AnimationNodeStateMachineTransition_v1ffd"), "strike", "run", SubResource("AnimationNodeStateMachineTransition_dmjno"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_npltq"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_5vgli"), "shoot", "run", SubResource("AnimationNodeStateMachineTransition_ylt54")]
+graph_offset = Vector2(-152, -154)
 
-[node name="Knight" type="CharacterBody3D" node_paths=PackedStringArray("_rig")]
+[node name="Knight" type="CharacterBody3D" node_paths=PackedStringArray("_rig", "LaunchPoint")]
 script = ExtResource("1_offgb")
 _rig = NodePath("KnightRig")
+LaunchPoint = NodePath("KnightRig/Skeleton3D/PistolAttachment/PistolKnight/LaunchPoint")
 
 [node name="KnightRig" type="Node3D" parent="."]
 
@@ -571,7 +591,7 @@ mesh = SubResource("ArrayMesh_38bbo")
 skeleton = NodePath("")
 
 [node name="LaunchPoint" type="Node3D" parent="KnightRig/Skeleton3D/PistolAttachment/PistolKnight"]
-transform = Transform3D(1, 0, 1.7763568e-15, 0, 1, 0, 1.7763568e-15, -1.7053026e-13, 1, -0.048124015, 0.48380032, -4.7683716e-07)
+transform = Transform3D(-0.99922764, 6.33745e-08, -0.039294694, 0.039294727, 6.061009e-08, -0.9992276, -6.094393e-08, -1, -6.305332e-08, -0.048124075, 0.48380032, -5.9604645e-07)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
