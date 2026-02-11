@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3irsd4nr7vej"]
+[gd_scene load_steps=4 format=3 uid="uid://d3irsd4nr7vej"]
+
+[ext_resource type="Script" uid="uid://y01vbrfw10bq" path="res://Code/Character/Projectile.cs" id="1_djqbs"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_dogk4"]
 radius = 0.045
@@ -8,6 +10,7 @@ height = 0.09
 radius = 0.045
 
 [node name="Projectile" type="Area3D"]
+script = ExtResource("1_djqbs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_dogk4")
