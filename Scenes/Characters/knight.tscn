@@ -322,7 +322,7 @@ graph_offset = Vector2(-152, -154)
 [node name="Knight" type="CharacterBody3D" node_paths=PackedStringArray("_rig", "LaunchPoint")]
 script = ExtResource("1_offgb")
 _rig = NodePath("KnightRig")
-LaunchPoint = NodePath("")
+LaunchPoint = NodePath("KnightRig/Skeleton3D/PistolAttachment/PistolKnight/LaunchPoint")
 
 [node name="KnightRig" type="Node3D" parent="."]
 
