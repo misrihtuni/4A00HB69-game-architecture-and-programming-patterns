@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace GA.Platformer3D
 {
@@ -14,6 +15,12 @@ namespace GA.Platformer3D
 		[Export] private bool _canGrow = false;
 
 		private ProjectilePool _projectilePool = null;
+
+		public bool UseProjectilePool
+		{
+			get => _useProjectilePool;
+			set => _useProjectilePool = value;
+		}
 
 		public Node3D ProjectileParent
 		{
@@ -30,6 +37,13 @@ namespace GA.Platformer3D
 		{
 			// Removes itself from the active LevelManager's role.
 			Active = null;
+
+			// Clean up the memory ProjectilePool has reserved.
+			if (_projectilePool != null)
+			{
+				_projectilePool.Dispose();
+				_projectilePool = null;
+			}
 		}
 
 		// Called when the node enters the scene tree for the first time.

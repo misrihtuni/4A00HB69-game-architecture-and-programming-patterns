@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
 namespace GA.Platformer3D
 {
-	public class Pool<T> : IPool<T>
-	 where T : Node
+	public class Pool<T> : IPool<T>, IDisposable
+		where T : Node
 	{
 		private PackedScene _sourceScene = null;
 		private bool _canGrow = false;
@@ -28,6 +29,28 @@ namespace GA.Platformer3D
 			{
 				Add();
 			}
+		}
+
+		public void Dispose()
+		{
+			if (_availableItems != null)
+			{
+				foreach (T item in _availableItems)
+				{
+					item.QueueFree();
+				}
+			}
+
+			if (_activeItems != null)
+			{
+				foreach (T item in _activeItems)
+				{
+					item.QueueFree();
+				}
+			}
+
+			_activeItems.Clear();
+			_availableItems.Clear();
 		}
 
 		public T Get()

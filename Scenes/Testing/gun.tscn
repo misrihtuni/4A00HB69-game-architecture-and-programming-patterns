@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo0sk7m2mfuxl"]
+
+[ext_resource type="Script" uid="uid://caa78ussvbf0n" path="res://Code/Testing/Gun.cs" id="1_sxerc"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8mlfq"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+
+[node name="Gun" type="MeshInstance3D" node_paths=PackedStringArray("FiringPoint")]
+transform = Transform3D(1, 0, 0, 0, -0.00022689899, 1, 0, -1, -0.00022689899, 0, 0, 0)
+mesh = SubResource("CylinderMesh_8mlfq")
+script = ExtResource("1_sxerc")
+FiringPoint = NodePath("FiringPoint")
+
+[node name="FiringPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.49908364, 0.00011324157)

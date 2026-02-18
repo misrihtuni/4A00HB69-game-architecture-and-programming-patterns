@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cou0wacn58kn"]
+
+[ext_resource type="Script" uid="uid://bpwpogv0hwddq" path="res://Code/Level/LevelManager.cs" id="1_5f4u4"]
+[ext_resource type="PackedScene" uid="uid://bo0sk7m2mfuxl" path="res://Scenes/Testing/gun.tscn" id="2_moub8"]
+[ext_resource type="PackedScene" uid="uid://c2614yxdyyexh" path="res://Scenes/Characters/Projectile.tscn" id="2_o2wxq"]
+[ext_resource type="Script" uid="uid://cfyk4rnc4eken" path="res://Code/Testing/StressTest.cs" id="3_ly3e6"]
+
+[node name="LevelManager" type="Node3D" node_paths=PackedStringArray("_projectileParent")]
+script = ExtResource("1_5f4u4")
+_projectileScene = ExtResource("2_o2wxq")
+_projectileParent = NodePath("Projectiles")
+_projectilePoolCapacity = 3000
+
+[node name="StressTest" type="Node3D" parent="."]
+script = ExtResource("3_ly3e6")
+
+[node name="Gun" parent="StressTest" instance=ExtResource("2_moub8")]
+
+[node name="Gun2" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(1, 0, 0, 0, -0.00022689899, 1, 0, -1, -0.00022689899, -0.8137826, 0, 0)
+
+[node name="Gun3" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(1, 0, 0, 0, -0.00022689899, 1, 0, -1, -0.00022689899, 0.73415697, 0, 0)
+
+[node name="Gun4" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(1, 0, 0, 0, -0.00022689899, 1, 0, -1, -0.00022689899, -1.7504767, 0, 0)
+
+[node name="Gun5" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(1, 0, 0, 0, -0.00022689899, 1, 0, -1, -0.00022689899, 1.4195442, 0, 0)
+
+[node name="Gun6" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(-0.9984602, -0.055472884, -1.2586742e-05, 0, -0.00022689899, 1, -0.055472884, 0.9984602, 0.0002265496, -0.1640968, 0, -3.449097)
+
+[node name="Gun7" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(-0.9984602, -0.055472884, -1.2586742e-05, 0, -0.00022689899, 1, -0.055472884, 0.9984602, 0.0002265496, 0.64843273, 0, -3.403954)
+
+[node name="Gun8" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(-0.9984602, -0.055472884, -1.2586742e-05, 0, -0.00022689899, 1, -0.055472884, 0.9984602, 0.0002265496, -0.8971233, 0, -3.4898226)
+
+[node name="Gun9" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(-0.9984602, -0.055472884, -1.2586742e-05, 0, -0.00022689899, 1, -0.055472884, 0.9984602, 0.0002265496, 1.5836846, 0, -3.3519928)
+
+[node name="Gun10" parent="StressTest" instance=ExtResource("2_moub8")]
+transform = Transform3D(-0.9984602, -0.055472884, -1.2586742e-05, 0, -0.00022689899, 1, -0.055472884, 0.9984602, 0.0002265496, -1.5814551, 0, -3.527843)
+
+[node name="Projectiles" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.4493408, -1.8066893)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.87018377, 0.43131125, -0.23822431, 0, 0.48348102, 0.8753548, 0.49272734, -0.7617196, 0.42071733, 0, 3.4287188, 0.050020218)

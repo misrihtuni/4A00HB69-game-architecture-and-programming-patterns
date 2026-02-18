@@ -8,7 +8,6 @@
 
 [node name="Level1" type="Node3D" node_paths=PackedStringArray("_projectileParent")]
 script = ExtResource("1_88msy")
-_useProjectilePool = true
 _projectileScene = ExtResource("2_phabk")
 _projectileParent = NodePath("ProjectileParent")
 _projectilePoolCapacity = 5
