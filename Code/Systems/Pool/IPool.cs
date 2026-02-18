@@ -20,10 +20,13 @@ namespace GA.Platformer3D
         T Get();
 
         /// <summary>
-        ///
+        /// Returns an object bak to the pool.
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item">Object to return to the pool.</param>
+        /// <returns>
+        ///  <c>true</c> if the object was returned to the pool successfully,
+        ///  <c>false</c> otherwise.
+        /// </returns>
         bool Return(T item);
     }
 }
