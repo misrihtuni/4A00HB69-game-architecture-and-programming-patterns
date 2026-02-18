@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -7,7 +8,7 @@ namespace GA.Platformer3D
     /// Object pool for objects of type <see cref="Node"/>.
     /// </summary>
     /// <typeparam name="T">Type of the nodes in the pool.</typeparam>
-    public class Pool<T> : IPool<T>
+    public class Pool<T> : IPool<T>, IDisposable
         where T : Node
     {
         ///////////////////////////////////////////////////////////////////////
@@ -128,6 +129,29 @@ namespace GA.Platformer3D
             }
 
             return item;
+        }
+
+        public void Dispose()
+        {
+            if (_availableItems != null)
+            {
+                foreach (T item in _availableItems)
+                {
+                    item.QueueFree();
+                }
+
+                _availableItems.Clear();
+            }
+
+            if (_activeItems != null)
+            {
+                foreach (T item in _activeItems)
+                {
+                    item.QueueFree();
+                }
+
+                _activeItems.Clear();
+            }
         }
     }
 }
