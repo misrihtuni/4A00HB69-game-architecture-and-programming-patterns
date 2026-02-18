@@ -30,6 +30,12 @@ namespace GA.Platformer3D
         public IHealth Health { get; private set; }
 
         /// <summary>
+        /// The point in 3D space where the projectile should be spawned at.
+        /// </summary>
+        [Export]
+        public Node3D LaunchPoint { get; private set; }
+
+        /// <summary>
         /// Indicates if the character is currently jumping.
         /// </summary>
         public bool IsJumping { get; protected set; } = false;
@@ -74,13 +80,27 @@ namespace GA.Platformer3D
         }
 
         ///////////////////////////////////////////////////////////////////////
-        // Methods
+        // Public Methods
         ///////////////////////////////////////////////////////////////////////
 
         public override void _Ready()
         {
             // TODO: Replace with an extension method that doesn't use the node path.
             Health = GetNode<IHealth>("Health");
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        // Private Methods
+        ///////////////////////////////////////////////////////////////////////
+
+        private void OnShoot()
+        {
+            LevelManager.Active.SpawnProjectile(
+                position: LaunchPoint.GlobalPosition,
+                direction: -LaunchPoint.GlobalTransform.Basis.Z,
+                collisionLayer: this.CollisionLayer,
+                collisionMask: this.CollisionMask
+            );
         }
     }
 }

@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://isifdpnnfqnj"]
+[gd_scene load_steps=5 format=3 uid="uid://isifdpnnfqnj"]
 
 [ext_resource type="PackedScene" uid="uid://cmkm6kjpnwcqo" path="res://Scenes/Level/LargeGrassBlock.tscn" id="1_rmvbh"]
+[ext_resource type="Script" uid="uid://bpwpogv0hwddq" path="res://Code/Level/LevelManager.cs" id="1_ryb75"]
+[ext_resource type="PackedScene" uid="uid://d3irsd4nr7vej" path="res://Scenes/Characters/projectile.tscn" id="2_88msy"]
 [ext_resource type="PackedScene" uid="uid://dhge6x15yiuxr" path="res://Scenes/Characters/knight.tscn" id="3_kl0vg"]
 
-[node name="Level1" type="Node3D"]
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("_projectileParent")]
+script = ExtResource("1_ryb75")
+_projectileScene = ExtResource("2_88msy")
+_projectileParent = NodePath("ProjectileParent")
 
 [node name="Platforms" type="Node3D" parent="."]
 
@@ -18,3 +23,5 @@ transform = Transform3D(1, 0, 0, 0, 0.8659468, 0.500136, 0, -0.500136, 0.8659468
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9999619, 0.008726664, -1.1812394e-07, -0.005895562, 0.67556447, 0.7372773, 0.0064340513, -0.73724926, 0.6755902, 0, 0, 0)
+
+[node name="ProjectileParent" type="Node3D" parent="."]
