@@ -26,6 +26,8 @@ namespace GA.Platformer3D
         [Export]
         private bool _projectilePoolCanGrow = false;
 
+        private ProjectilePool _projectilePool = null;
+
         ///////////////////////////////////////////////////////////////////////
         // Properties
         ///////////////////////////////////////////////////////////////////////
@@ -65,6 +67,8 @@ namespace GA.Platformer3D
                 // TODO: Consider creating an empty node under LevelManager.
                 _projectileParent = this;
             }
+
+            _projectilePool = new ProjectilePool(_projectileScene, _projectilePoolCapacity, _projectilePoolCanGrow);
         }
 
         /// <summary>
@@ -87,8 +91,8 @@ namespace GA.Platformer3D
 
             if (_useProjectilePool)
             {
-                // TODO: Fetch the projectile from the pool.
-                throw new NotImplementedException();
+                // Fetch the projectile from the pool.
+                projectile = _projectilePool.Get();
             }
             else
             {
@@ -119,7 +123,10 @@ namespace GA.Platformer3D
 
             if (_useProjectilePool)
             {
-                throw new NotImplementedException();
+                if (!_projectilePool.Return(projectile))
+                {
+                    GD.PushError("Failed to return the projectile to the pool.");
+                }
             }
             else
             {
