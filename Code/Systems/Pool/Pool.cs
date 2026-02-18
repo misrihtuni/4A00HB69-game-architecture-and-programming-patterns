@@ -17,7 +17,7 @@ namespace GA.Platformer3D
         private PackedScene _sourceScene = null;
         private bool _canGrow = false;
         private Queue<T> _availableItems = null;
-        private HashSet<T> _activeItems = new();
+        private HashSet<T> _activeItems = null;
 
         ///////////////////////////////////////////////////////////////////////
         // Public Methods
@@ -67,7 +67,7 @@ namespace GA.Platformer3D
             }
             else if (_canGrow)
             {
-                item = Add(true);
+                item = Add(activateOnAdd: true);
             }
             else
             {
@@ -122,7 +122,6 @@ namespace GA.Platformer3D
         {
             T item = _sourceScene.Instantiate<T>();
 
-            // Add item to the item pool only.
             if (!activateOnAdd)
             {
                 _availableItems.Enqueue(item);
